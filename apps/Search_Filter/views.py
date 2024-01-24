@@ -1,7 +1,7 @@
 from rest_framework import generics
 from .logic import search_logic, filter_logic
-from apps.Products.models import Product
-from apps.Sellers.models import SellerProfile
+from apps.Menu.models import Product
+from apps.About_us.models import SellerProfile
 from . import serializers
 
 

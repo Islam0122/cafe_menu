@@ -25,8 +25,8 @@ JAZZMIN_SETTINGS = {
     },
 
     "order_with_respect_to": [
-        # apps
-    ],
+
+            ],
 
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-thumbtack",

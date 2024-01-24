@@ -1,5 +1,5 @@
-from apps.Products.models import Product
-from apps.Sellers.models import SellerProfile
+from apps.Menu.models import Product
+from apps.About_us.models import SellerProfile
 
 
 def search_products(query):

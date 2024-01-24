@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from apps.Products.models import Product
-from apps.Products.serializers import Category
-from apps.Sellers.models import SellerProfile
+from apps.Menu.models import Product
+from apps.Menu.serializers import Category
+from apps.About_us.models import SellerProfile
 
 
 class ProductSearchSerializer(serializers.ModelSerializer):

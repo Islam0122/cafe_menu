@@ -3,4 +3,6 @@ from django.apps import AppConfig
 
 class WorkerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.Sellers'
+    name = 'apps.About_us'
+    def ready(self):
+        import apps.About_us.signal
