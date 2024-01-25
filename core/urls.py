@@ -8,7 +8,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/v1/about_us/', include("apps.About_us.urls")),
                   path('api/v1/contact/', include("apps.Contact.urls")),
-                  #path('api/v1/', include("apps.Search_Filter.urls")),
+                  path('api/v1/QR_code', include("apps.QR_code.urls")),
                   path('api/v1/menu/', include('apps.Menu.urls')),
               ] + urls_swagger
 if settings.DEBUG:

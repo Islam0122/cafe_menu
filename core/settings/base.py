@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'apps.About_us',
     'apps.Menu',
     'apps.Contact',
+    'apps.QR_code',
     #'apps.Search_Filter',
 ]
 
