@@ -18,8 +18,8 @@ class DishSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dish
-        fields = ['img', 'name', 'category',
-                  'ingredients', 'description',
+        fields = ['id','img', 'name', 'category',
+                  'ingredients', 'description','discount',
                   'price', 'is_recommended',
                   'created_at', 'updated_at']
         read_only_fields = ('created_at', 'updated_at')
@@ -30,7 +30,7 @@ class DrinkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Drink
-        fields = ['img', 'name', 'category',
-                  'description', 'price', 'is_recommended',
+        fields = ['id','img', 'name', 'category',
+                  'description','discount', 'price', 'is_recommended',
                   'created_at', 'updated_at']
         read_only_fields = ('created_at', 'updated_at')

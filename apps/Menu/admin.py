@@ -40,7 +40,7 @@ class DishAdmin(BaseAdmin):
             'fields': ('img',),
         }),
         ('Дополнительные настройки', {
-            'fields': ('is_recommended',),
+            'fields': ('discount','is_recommended',),
         }),
         ('Даты', {
             'fields': ('created_at', 'updated_at'),
@@ -61,7 +61,7 @@ class DrinkAdmin(BaseAdmin):
             'fields': ('img',),
         }),
         ('Дополнительные настройки', {
-            'fields': ('is_recommended',),
+            'fields': ('discount','is_recommended',),
         }),
         ('Даты', {
             'fields': ('created_at', 'updated_at'),
