@@ -9,12 +9,15 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
         {"name": "Admin Panel", "url": "http://127.0.0.1:8000/admin/", "permissions": ["auth.view_user"]},
         {"model": "auth.User"},
+        {"name": "Menu", "url": "/admin/Menu/"},
+        {"name": "About Us", "url": "/admin/About_us/"},
+        {"name": "Contacts", "url": "/admin/Contact/"},
+
     ],
     "usermenu_links": [
-        {
-            # "model": "user.User",
-        },
+
     ],
+
     "show_sidebar": True,
     "navigation_expanded": True,
     "hide_apps": [],

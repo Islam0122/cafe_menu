@@ -11,7 +11,9 @@ class Contact(models.Model):
     business_hours = models.CharField(max_length=255, blank=True, null=True, verbose_name='Часы работы')
 
     def __str__(self):
-        return f"Контакт: "
+        return f"Контакт "
 
     class Meta:
         verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакт'
+
