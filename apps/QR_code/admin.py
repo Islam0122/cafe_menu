@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import QRCode
 
+
+@admin.register(QRCode)
 class QRCodeAdmin(admin.ModelAdmin):
     list_display = ('url', 'qr_code_image', 'created_at', 'updated_at')
     search_fields = ('url',)
@@ -24,5 +26,3 @@ class QRCodeAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return QRCode.objects.exists()
-
-admin.site.register(QRCode, QRCodeAdmin)

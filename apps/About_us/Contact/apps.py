@@ -1,8 +1,9 @@
 from django.apps import AppConfig
 
 
-class QrCodeConfig(AppConfig):
+class ContactConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.QR_code'
+    name = 'apps.About_us.Contact'
     def ready(self):
-        import apps.QR_code.signal
+        import apps.About_us.Contact.signal
+

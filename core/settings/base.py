@@ -24,12 +24,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'phonenumber_field',
+    # baseemodel
     'apps.Basemodel',
-    'apps.About_us',
-    'apps.Menu',
-    'apps.Contact',
+    # Menu
+    'apps.Menu.Dish',
+    'apps.Menu.Drink',
+    # About_Us
+    'apps.About_us.About_us',
+    'apps.About_us.Contact',
+    # Qr_code
     'apps.QR_code',
-    #'apps.Search_Filter',
+    #'21.Search_Filter',
 ]
 
 MIDDLEWARE = [
