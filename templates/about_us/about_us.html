@@ -1,0 +1,22 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block title %}О нас{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about_us.css' %}">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card shadow">
+                    <img src="{{ about_us.image.url }}" class="card-img-top img-fluid" alt="{{ about_us.title }}">
+                    <div class="card-body text-center">
+                        <h1 class="card-title display-4">{{ about_us.title }}</h1>
+                        <p class="card-text lead">{{ about_us.text }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

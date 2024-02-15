@@ -1,0 +1,107 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block title %}Меню напитков{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    body {
+        font-family: 'Helvetica', sans-serif; /* Choose a suitable font */
+    }
+
+    .drinks-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .drink-card {
+        width: 18rem;
+        height: 26rem; /* Set a fixed height for the drink cards */
+        margin: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: box-shadow 0.3s;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .drink-card:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .drink-img {
+        width: 100%;
+        height: 200px; /* Set a fixed height for the drink images */
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+    }
+
+    .drink-img::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .drink-card:hover .drink-img::after {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .drink-info {
+        padding: 15px;
+    }
+
+    .drink-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .drink-price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .btn-more {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-more:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row drinks-container">
+        {% for drink in drinks %}
+        <div class="col-md-4">
+            <div class="drink-card">
+                <img src="{{ drink.img.url }}" alt="{{ drink.name }}" class="drink-img">
+                <div class="drink-info">
+                    <h2 class="drink-title">{{ drink.name }}</h2>
+                    <p class="drink-price">Цена: {{ drink.price }}</p>
+                    <a href="http://127.0.0.1:8000/api/v1/menu/drinks/{{ drink.id }}/" class="btn-more">Подробнеe</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

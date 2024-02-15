@@ -1,0 +1,31 @@
+{% extends 'layouts/index.html' %}
+
+{% block title %}Напитки{% endblock %}
+
+{% block content %}
+  <h2>Напитки</h2>
+  <ul id="drinks-list"></ul>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {\
+      $.ajax({
+        url: '/api/v1/drinks/',  // Укажите правильный URL вашего API
+        method: 'GET',
+        success: function(data) {
+          // Обработка успешного ответа
+          var drinksList = $('#drinks-list');
+
+          // Пройдитесь по данным и добавьте их в список
+          $.each(data, function(index, drink) {
+            drinksList.append('<li>' + drink.name + ' - ' + drink.price + '</li>');
+          });
+        },
+        error: function(error) {
+          // Обработка ошибки
+          console.log('Ошибка при получении данных о напитках:', error);
+        }
+      });
+    });
+  </script>
+{% endblock %}

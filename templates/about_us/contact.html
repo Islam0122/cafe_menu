@@ -1,0 +1,27 @@
+{% extends 'layouts/index.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Наши контакты</h1>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Номер телефона:</strong> {{ contact.phone_number }}</li>
+                            <li class="list-group-item"><strong>Номер WhatsApp:</strong> {{ contact.whatsapp_number }}</li>
+                            <li class="list-group-item"><strong>Instagram:</strong> <a href="{{ contact.instagram_account }}" target="_blank">{{ contact.instagram_account }}</a></li>
+                            <li class="list-group-item"><strong>Telegram:</strong> <a href="{{ contact.telegram_account }}" target="_blank">{{ contact.telegram_account }}</a></li>
+                            <li class="list-group-item"><strong>Email:</strong> <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
+                            <li class="list-group-item"><strong>Адрес:</strong> {{ contact.address }}</li>
+                            <li class="list-group-item"><strong>Адрес URL:</strong> <a href="{{ contact.address_url }}" target="_blank">{{ contact.address_url }}</a></li>
+                            <li class="list-group-item"><strong>Часы работы:</strong> {{ contact.business_hours }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
