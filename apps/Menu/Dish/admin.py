@@ -26,3 +26,4 @@ class DishAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
         }),
     )
+    readonly_fields = ('created_at', 'updated_at')

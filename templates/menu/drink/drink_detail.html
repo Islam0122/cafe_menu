@@ -67,10 +67,10 @@
             <h1 class="drink-title">{{ drink.name }}</h1>
             <p class="drink-description">{{ drink.description }}</p>
             <p class="drink-volume">{{ drink.volume }}</p>
-            <p class="drink-price">{{ drink.price }}</p>
             <p class="drink-category">Категория: {{ drink.category.title }}</p>
             <p class="drink-created">Добавлено: {{ drink.created_at }}</p>
             <p class="drink-updated">Обновлено: {{ drink.updated_at }}</p>
+            <p class="drink-price">Цена:{{ drink.price }}</p>
         </div>
         <a href="http://127.0.0.1:8000/api/v1/menu/drinks/" class="btn-back btn btn-primary">Вернуться к списку</a>
     </div>
