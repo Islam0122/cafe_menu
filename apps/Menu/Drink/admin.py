@@ -10,7 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class DrinkAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price','created_at', 'updated_at')
     search_fields = ('name', 'category__title')
-    list_filter = ('category__title', 'created_at')
+    list_filter = ('category__title','volume', 'created_at')
     fieldsets = (
         ('Основная информация', {
             'fields': ('name', 'category', 'description','volume', 'price'),

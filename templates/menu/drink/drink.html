@@ -5,84 +5,97 @@
 
 {% block content %}
 <style type="text/css">
-    body {
-        font-family: 'Helvetica', sans-serif; /* Choose a suitable font */
-    }
-
-    .drinks-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
     .drink-card {
-        width: 18rem;
-        height: 26rem; /* Set a fixed height for the drink cards */
-        margin: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: box-shadow 0.3s;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+            width: 18rem;
+            height: 26rem;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
     .drink-card:hover {
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    }
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
     .drink-img {
-        width: 100%;
-        height: 200px; /* Set a fixed height for the drink images */
-        object-fit: cover;
-        border-bottom: 1px solid #ddd;
-        position: relative;
-    }
-
-    .drink-img::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 1;
-    }
-
-    .drink-card:hover .drink-img::after {
-        background: rgba(0, 0, 0, 0.5);
-    }
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-size: cover;
+        }
 
     .drink-info {
-        padding: 15px;
-    }
+            padding: 15px;
+        }
 
     .drink-title {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: #333;
-    }
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
 
     .drink-price {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-</style>
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    .no-image {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+              border-bottom: 1px solid #ddd;
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              color: #555;
+        }
 
+    .form-inline {
+            margin-bottom: 20px;
+        }
+
+    .filter-buttons {
+            margin-bottom: 10px;
+        }
+
+    .filter-buttons a {
+            margin-right: 10px;
+        }
+</style>
+<div class="container mt-3">
+        <form class="form-inline my-2 my-lg-0" method="get" action="/api/v1/menu/drinks/">
+            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" name="search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+        </form>
+
+        <div class="filter-buttons">
+            <strong>Фильтр по категории:</strong>
+            <a class="btn btn-outline-success my-2 my-sm-0{% if not request.GET.category %} active{% endif %}" href="?">Все</a>
+            {% for category in categories %}
+                <a class="btn btn-outline-success my-2 my-sm-0{% if category.title == request.GET.category %} active{% endif %}" href="?category={{ category.title }}">{{ category.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
 <div class="container mt-5">
     <div class="row drinks-container">
         {% for drink in drinks %}
         <div class="col-md-4">
-            <div class="drink-card">
-                <img src="{{ drink.img.url }}" alt="{{ drink.name }}" class="drink-img">
-                <div class="drink-info">
-                    <h2 class="drink-title">{{ drink.name }}</h2>
-                    <p class="drink-price">Цена: {{ drink.price }}</p>
-                    <a href="/api/v1/menu/drinks/{{ drink.id }}/" class="btn btn-outline-success my-2 my-sm-0">Подробнеe</a>
+                <div class="drink-card">
+                        {% if drink.img %}
+                            <img src="{{ drink.img.url }}" alt="{{ drink.name }}" class="drink-img">
+                        {% else %}
+                            <p class="no-image">No Image</p>
+                        {% endif %}
+                        <div class="drink-info">
+                            <h2 class="drink-title">{{ drink.name }}</h2>
+                            <p class="drink-price">Цена: {{ drink.price }}</p>
+                            <a href="/api/v1/menu/drinks/{{ drink.id }}/" class="btn btn-outline-success my-2 my-sm-0">Подробнее</a>
+                        </div>
                 </div>
-            </div>
         </div>
         {% endfor %}
     </div>

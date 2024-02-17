@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from . import models
@@ -16,8 +17,19 @@ class DrinkViewSet(viewsets.ModelViewSet):
 
 
 def DrinkListView(request):
-    drinks = models.Drink.objects.all()
-    return render(request, 'menu/drink/drink.html', {'drinks': drinks})
+    if request.method == 'GET':
+        drinks = models.Drink.objects.all()
+        categories = models.Category.objects.all()
+        search_text = request.GET.get("search")
+        category_filter = request.GET.get("category")
+        if search_text:
+            drinks = drinks.filter(
+                Q(name__icontains=search_text) |
+                Q(price__contains=search_text)
+            )
+        if category_filter:
+            drinks = drinks.filter(category__title=category_filter)
+    return render(request, 'menu/drink/drink.html', {'drinks': drinks,'categories': categories})
 def DrinkDetailView(request, pk):
     drink = get_object_or_404(models.Drink, pk=pk)
     return render(request, 'menu/drink/drink_detail.html', {'drink': drink})

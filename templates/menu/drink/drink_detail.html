@@ -19,12 +19,21 @@
     }
 
     .drink-img {
-        width: 100%;
-        max-height: 400%;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
     }
+    .no-image {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+              border-bottom: 1px solid #ddd;
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              color: #555;
+        }
 
     .drink-title {
         font-size: 2rem;
@@ -40,11 +49,15 @@
 
 <div class="container">
     <div class="drink-details">
-        <img src="{{ drink.img.url }}" alt="{{ drink.name }}" class="drink-img">
+        {% if drink.img %}
+                <img src="{{ drink.img.url }}" alt="{{ drink.name }}" class="drink-img">
+        {% else %}
+                <p class="no-image">No Image</p>
+        {% endif %}
         <div class="drink-info">
             <h1 class="drink-title">{{ drink.name }}</h1>
             <p class="drink-description">{{ drink.description }}</p>
-            <p class="drink-volume">{{ drink.volume }}</p>
+            <p class="drink-volume">Объем: {{ drink.volume }}</p>
             <p class="drink-category">Категория: {{ drink.category.title }}</p>
             <p class="drink-created">Добавлено: {{ drink.created_at }}</p>
             <p class="drink-updated">Обновлено: {{ drink.updated_at }}</p>
