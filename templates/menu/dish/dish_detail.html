@@ -22,32 +22,15 @@
         border-radius: 8px;
         margin-bottom: 20px;
     }
-
-
-
-        .dish-title {
+    .dish-title {
             font-size: 2rem;
             margin-bottom: 10px;
         }
-
-        .dish-description {
+    .dish-description {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
-        .btn-back {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-back:hover {
-            background-color: #0056b3;
-        }
     </style>
 
     <div class="container mt-5">
@@ -61,7 +44,7 @@
             <p class="dish-created">Добавлено: {{ dish.created_at }}</p>
             <p class="dish-updated">Обновлено: {{ dish.updated_at }}</p>
             <p class="dish-price">Цена: {{ dish.price }}</p>
-            <a href="http://127.0.0.1:8000/api/v1/menu/drinks" class="btn btn-primary btn-back">Назад к списку блюд</a>
+            <a href="/api/v1/menu/drinks" class="btn btn-outline-success my-2 my-sm-0">Назад к списку блюд</a>
         </div>
     </div>
 {% endblock %}

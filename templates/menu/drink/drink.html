@@ -68,22 +68,6 @@
     .drink-price {
         font-size: 1.2rem;
         font-weight: bold;
-        color: #007bff;
-    }
-
-    .btn-more {
-        display: inline-block;
-        padding: 8px 15px;
-        background-color: #007bff;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-    .btn-more:hover {
-        background-color: #0056b3;
-        color: #fff;
     }
 </style>
 
@@ -96,7 +80,7 @@
                 <div class="drink-info">
                     <h2 class="drink-title">{{ drink.name }}</h2>
                     <p class="drink-price">Цена: {{ drink.price }}</p>
-                    <a href="http://127.0.0.1:8000/api/v1/menu/drinks/{{ drink.id }}/" class="btn-more">Подробнеe</a>
+                    <a href="/api/v1/menu/drinks/{{ drink.id }}/" class="btn btn-outline-success my-2 my-sm-0">Подробнеe</a>
                 </div>
             </div>
         </div>
