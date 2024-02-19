@@ -32,9 +32,11 @@ INSTALLED_APPS = [
     # About_Us
     'apps.About_us.About_us',
     'apps.About_us.Contact',
+    # Review
+    'apps.Review.Review',
     # Qr_code
     'apps.QR_code',
-    #'21.Search_Filter',
+
 ]
 
 MIDDLEWARE = [

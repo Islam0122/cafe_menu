@@ -1,0 +1,49 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block title %}Детали отзыва{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <style type="text/css">
+            .review-detail {
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .review-header {
+                background-color: #4d5656;
+                color: #fff;
+                padding: 10px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                margin: 0;
+            }
+
+            .rating {
+                color: #ffc107;
+            }
+
+            .review-text {
+                color: #495057;
+            }
+        </style>
+
+        <div class="review-detail">
+            <div class="review-header">
+                <h1>{{ review.user_name }}</h1>
+                <p class="rating">Рейтинг: {{ review.rating }}</p>
+            </div>
+            <p class="review-text">{{ review.text }}</p>
+        </div>
+        <a href="/api/v1/review/" class="btn btn-outline-success my-2 my-sm-0">
+            Назад к списку отзывов
+        </a>
+    </div>
+{% endblock %}

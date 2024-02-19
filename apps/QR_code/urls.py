@@ -6,4 +6,5 @@ urlpatterns = [
     # path('', QRCodeViewSet.as_view({'get': 'list'}), name='qr_code_list'),
     # html
     path('', QRCodeView, name='qr_code_list')
+
 ]

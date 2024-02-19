@@ -1,0 +1,80 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block title %}Отзывы{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f3f3f3;
+            }
+
+            h1 {
+                color: #333;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .review-list {
+                list-style: none;
+                padding: 0;
+            }
+
+            .review-item {
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                margin-bottom: 20px;
+                padding: 20px;
+            }
+
+            .review-header {
+                background-color: #4d5656; /* Измените цвет фона заголовка отзыва */
+                color: #fff;
+                padding: 10px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                margin: 0;
+            }
+
+            .rating {
+                color: #f39c12;
+            }
+
+            .review-text {
+                color: #555;
+            }
+
+            .read-more {
+                color: #3498db;
+                text-decoration: none;
+                display: block;
+                margin-top: 10px;
+            }
+        </style>
+
+        <h1>Отзывы</h1>
+        <ul class="review-list">
+            {% if reviews %}
+                {% for review in reviews %}
+                    <li class="review-item">
+                        <div class="review-header">
+                            <h2>{{ review.user_name }}</h2>
+                            <p class="rating">Рейтинг: {{ review.rating }}</p>
+                        </div>
+                        <p class="review-text">{{ review.text }}</p>
+                        <a href="/api/v1/review/{{ review.id }}/" class="read-more">Читать далее</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>No reviews available yet. Be the first to leave a review!</p>
+            {% endif %}
+        </ul>
+         <a href="/api/v1/review/add_review/" class="btn btn-outline-success my-2 my-sm-0">Добавить отзыв</a>
+    </div>
+{% endblock %}

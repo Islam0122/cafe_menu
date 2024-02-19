@@ -17,22 +17,21 @@ class DishViewSet(viewsets.ModelViewSet):
 
 
 def DishListView(request):
-    if request.method == 'GET':
-        dishes = models.Dish.objects.all()
-        categories = models.Category.objects.all()
-        search_text = request.GET.get("search")
-        category_filter = request.GET.get("category")
 
-        if search_text:
-            dishes = dishes.filter(
-                Q(name__icontains=search_text) |
-                Q(price__contains=search_text)
-            )
-        if category_filter:
-            dishes = dishes.filter(category__title=category_filter)
+    dishes = models.Dish.objects.all()
+    categories = models.Category.objects.all()
+    selected_category = request.GET.get('category')
+    if selected_category and selected_category != 'all':
+        dishes = dishes.filter(category__title=selected_category)
 
-    return render(request, 'menu/dish/dish.html', {'dishes': dishes,'categories': categories})
+    search_text = request.GET.get("search")
+    if search_text:
+        dishes = dishes.filter(
+            Q(name__ieregx=fr'.*{search_text}.*') |
+            Q(price__contains=search_text)
+        )
 
+    return render(request, 'menu/dish/dish.html', {'dishes': dishes, 'categories': categories, 'selected_category': selected_category, 'search_text': search_text})
 
 def DishDetailView(request, pk):
     dish = get_object_or_404(models.Dish, pk=pk)

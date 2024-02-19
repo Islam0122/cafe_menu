@@ -74,17 +74,17 @@
         </form>
 
         <div class="filter-buttons">
-            <strong>Фильтр по категории:</strong>
-            <a class="btn btn-outline-success my-2 my-sm-0{% if not request.GET.category %} active{% endif %}" href="?">Все</a>
-            {% for category in categories %}
-                <a class="btn btn-outline-success my-2 my-sm-0{% if category.title == request.GET.category %} active{% endif %}" href="?category={{ category.title }}">{{ category.title }}</a>
-            {% endfor %}
+                <strong>Фильтр по категории:</strong>
+                <a class="btn btn-outline-success my-2 my-sm-0 active" href="#" data-category="all">Все</a>
+                {% for category in categories %}
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="#" data-category="{{ category.title }}">{{ category.title }}</a>
+                {% endfor %}
         </div>
     </div>
 <div class="container mt-5">
     <div class="row drinks-container">
         {% for drink in drinks %}
-        <div class="col-md-4">
+      <div class="col-md-4 filter-item" data-category="{% if drink.category %}{{ drink.category.title }}{% else %}all{% endif %}">
                 <div class="drink-card">
                         {% if drink.img %}
                             <img src="{{ drink.img.url }}" alt="{{ drink.name }}" class="drink-img">
@@ -101,5 +101,45 @@
         {% endfor %}
     </div>
 </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        $('.filter-buttons a').on('click', function (e) {
+            e.preventDefault();
+
+            $('.filter-buttons a').removeClass('active');
+
+
+            $(this).addClass('active');
+
+            var category = $(this).data('category');
+
+            $('.filter-item').each(function () {
+                var cardCategory = $(this).data('category');
+
+                if (category === 'all' || cardCategory === category) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+       $('.form-inline').submit(function (e) {
+                e.preventDefault();
+
+                var search_text = $('input[name="search"]').val().toLowerCase();
+
+                $('.filter-item').each(function () {
+                    var drinkName = $(this).find('.drink-title').text().toLowerCase();
+
+                    if (drinkName.includes(search_text)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
 
 {% endblock %}
