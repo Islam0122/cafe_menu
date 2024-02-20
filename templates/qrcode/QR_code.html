@@ -10,7 +10,11 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="card shadow">
-                    <img src="{{ qrcode.qr_code_image.url }}" class="card-img-top img-fluid" alt="QR Code">
+                    {% if qrcode.qr_code_image %}
+                        <img src="{{ qrcode.qr_code_image.url }}" class="card-img-top img-fluid" alt="QR Code">
+                    {% else %}
+                        <p>No QR Code image available</p>
+                    {% endif %}
                     <div class="card-body text-center">
                         <h1 class="card-title display-4">QR Code</h1>
                     </div>

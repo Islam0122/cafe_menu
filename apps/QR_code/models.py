@@ -16,17 +16,16 @@ class QRCode(BaseModel):
             qr = qrcode.QRCode(
                 version=1,
                 error_correction=qrcode.constants.ERROR_CORRECT_L,
-                box_size=10,
-                border=4,
+                box_size=20,
+                border=2,
             )
             qr.add_data(self.url)
             qr.make(fit=True)
 
-            img = qr.make_image(fill_color="white", back_color="black").convert('RGB')
+            img = qr.make_image(fill_color="black", back_color="white").convert('RGB')
 
             with BytesIO() as buffer:
                 img.save(buffer, format="PNG")
-                self.qr_code_image.save(f'qr_code_{self.pk}.png', ContentFile(buffer.getvalue()), save=False)
                 self.qr_code_image.save(f'qr_code_{self.pk}.png', ContentFile(buffer.getvalue()))
 
         else:
