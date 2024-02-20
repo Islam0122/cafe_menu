@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'apps.Review.Review',
     # Qr_code
     'apps.QR_code',
+    # Order
+    'apps.Order.Order'
 
 ]
 

@@ -33,4 +33,4 @@ class Dish(BaseModel):
         verbose_name_plural = _("Блюда")
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.price}'

@@ -30,4 +30,4 @@ class Drink(BaseModel):
         verbose_name_plural = _("Напитки")
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.volume}-{self.price}'

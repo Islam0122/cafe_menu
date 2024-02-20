@@ -10,6 +10,7 @@ urlpatterns = [
                   path('api/v1/menu/', include('apps.Menu.urls')),
                   path('api/v1/review/', include("apps.Review.Review.urls")),
                   path('api/v1/QR_code/', include("apps.QR_code.urls")),
+                  path('api/v1/order/', include("apps.Order.Order.urls")),
               ] + urls_swagger
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
