@@ -11,9 +11,16 @@
             <div class="col-md-6 mx-auto">
                 <div class="card shadow">
                     {% if qrcode.qr_code_image %}
-                        <img src="{{ qrcode.qr_code_image.url }}" class="card-img-top img-fluid" alt="QR Code">
+                        <img src="{{ qrcode.qr_code_image.url }}" class="card-img-top img-fluid" alt="QR Code Image">
+                        <div class="card-body text-center">
+                            <a href="{{ qrcode.qr_code_image.url }}" download="qr_code.png" class="btn btn-outline-success my-2 my-sm-0">
+                                Download QR Code
+                            </a>
+                        </div>
                     {% else %}
-                        <p>No QR Code image available</p>
+                        <div class="card-body text-center">
+                            <p class="card-text">No QR Code image available</p>
+                        </div>
                     {% endif %}
                     <div class="card-body text-center">
                         <h1 class="card-title display-4">QR Code</h1>

@@ -4,92 +4,91 @@
 
 {% block content %}
     <style type="text/css">
-         body {
-              font-family: 'Arial', sans-serif;
-              background-color: #f8f9fa;
-              margin: 0;
-              padding: 0;
-              }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
 
-         .container {
-              max-width: 800px;
-              margin: auto;
-              padding: 20px;
-              }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
 
-         h1 {
-               color: #007bff;
-               text-align: center;
-               }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
 
-         .review-form {
-               background-color: #fff;
-               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-               border-radius: 8px;
-               padding: 20px;
-               }
-         .form-group {
-             margin-bottom: 20px;
-               }
+        .review-form {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
 
-         label {
-             display: block;
-             margin-bottom: 5px;
-             font-weight: bold;
-              }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-         input,
-         textarea,
-         select {
-                width: 100%;
-                padding: 10px;
-                box-sizing: border-box;
-                border: 1px solid #ced4da;
-                border-radius: 4px;
-                margin-bottom: 10px;
-     }
-         .error-message {
-             color: red;
-         }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-     button {
-          background-color: #007bff;
-          color: #fff;
-          padding: 12px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-    }
+        select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
 
-    button:hover {
-        background-color: #0056b3;
-    }
+        .error-message {
+            color: red;
+        }
 
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
-     <div class="container">
+
+    <div class="container">
         <h1>Форма заказа</h1>
         <form method="post" action="{% url 'create_order' %}" class="review-form">
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="id_dish">Блюдо:</label>
-                <select name="dish" id="id_dish" class="form-control">
+                <label for="id_dishes">Блюдо:</label>
+                <select name="dishes" id="id_dishes" class="form-control">
                     <!-- Опции для выбора блюда -->
+                    {% for dish in form.dishes %}
+                        <option value="{{ dish.name }}">{{ dish.name }}</option>
+                    {% endfor %}
                 </select>
-                {% if order_form.dish.errors %}
-                    <p class="error-message">{{ order_form.dish.errors }}</p>
-                {% endif %}
             </div>
 
             <div class="form-group">
-                <label for="id_drink">Напиток:</label>
-                <select name="drink" id="id_drink" class="form-control">
+                <label for="id_drinks">Напиток:</label>
+                <select name="drinks" id="id_drinks" class="form-control">
                     <!-- Опции для выбора напитка -->
+                    {% for drink in form.drinks %}
+                        <option value="{{ drink.id }}">{{ drink.name }}</option>
+                    {% endfor %}
                 </select>
-                {% if order_form.drink.errors %}
-                    <p class="error-message">{{ order_form.drink.errors }}</p>
-                {% endif %}
             </div>
 
             <button type="submit">Отправить заказ</button>
