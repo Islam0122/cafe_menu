@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     # Qr_code
     'apps.QR_code',
     # Order
-    'apps.Order.Order'
+    'apps.Order.Order',
+    # News
+    'apps.News'
 
 ]
 

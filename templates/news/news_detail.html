@@ -1,0 +1,20 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="card">
+      {% if news.image %}
+        <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.title }}">
+      {% endif %}
+      <div class="card-body">
+        <h2 class="card-title">{{ news.title }}</h2>
+        <p class="card-text">{{ news.content }}</p>
+        <p class="card-text"><small class="text-muted">Дата публикации: {{ news.pub_date }}</small></p>
+      </div>
+    </div>
+  <a href="/api/v1/news/" class="btn btn-outline-success my-2 my-sm-0">Назад к списку новостей</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block style %}
+  <style type="text/css">
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #343a40;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    .card {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      width: 100%; /* Make the image responsive */
+      max-height: 150px; /* Adjusted max height */
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #007bff;
+    }
+
+    .card-text {
+      color: #555;
+    }
+
+    .card-date {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .news-title {
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+      color: #007bff;
+      text-align: center;
+    }
+
+    .btn-read-more {
+      display: block;
+      margin-top: 15px;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: #28a745;
+      border: 1px solid #28a745;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-read-more:hover {
+      background-color: #218838;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="news-title">Новости</h1>
+    {% for news_item in news %}
+      <div class="card">
+        {% if news_item.image %}
+          <img class="card-img-top" src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+        {% endif %}
+        <div class="card-body">
+          <p class="card-title">{{ news_item.title }}</p>
+          <p class="card-date">Дата публикации: {{ news_item.pub_date|date:"d F Y" }}</p>
+          <a href="/api/v1/news/{{ news_item.id }}/" class="btn-read-more">Читать подробнее</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
